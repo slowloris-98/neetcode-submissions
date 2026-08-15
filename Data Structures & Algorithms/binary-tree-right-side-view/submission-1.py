@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res=[]
+        self.maxH=-math.inf
+        def dfs(node,  height):
+            if not node:
+                return
+            if height>self.maxH:
+                res.append(node.val)
+                self.maxH=height
+            dfs(node.right, height+1)
+            dfs(node.left, height+1)
+
+        
+        dfs(root,0)
+        return res
+            
